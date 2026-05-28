@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Empleo - SENAFIM</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header>
+    <a href="index.html" class="logo">
+      <svg viewBox="0 0 24 24">
+        <path d="M2 21 L22 3 L18 3 L18 9 L14 9 L14 5 L10 5 L10 13 L6 13 L6 7 L2 7 L2 21 Z"/>
+      </svg>
+      SENAFIM
+    </a>
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="empleos.html" class="active">Empleos</a>
+      <a href="contacto.html">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="jobs-section">
+      <h2>Puestos de trabajo disponibles</h2>
+      <div class="job-grid">
+        <article class="job-card">
+          <span class="job-number">01</span>
+          <h3 class="job-title">Operador de Maquinaria Pesada</h3>
+          <p class="job-copy">
+            Manejo de equipos mineros a gran escala, con experiencia previa y disponibilidad para turno rotativo. Ideal para quien busca operar maquinaria clave en faena.
+          </p>
+          <button type="button" class="submit-button job-apply-btn" data-job="Operador de Maquinaria Pesada">Postularme a este puesto</button>
+        </article>
+
+        <article class="job-card">
+          <span class="job-number">02</span>
+          <h3 class="job-title">Técnico de Mantenimiento Industrial</h3>
+          <p class="job-copy">
+            Responsable de mantenimiento preventivo y correctivo, con formación técnica en mecánica o electricidad industrial y enfoque en fiabilidad operativa.
+          </p>
+          <button type="button" class="submit-button job-apply-btn" data-job="Técnico de Mantenimiento Industrial">Postularme a este puesto</button>
+        </article>
+
+        <article class="job-card">
+          <span class="job-number">03</span>
+          <h3 class="job-title">Supervisor de Seguridad Minera</h3>
+          <p class="job-copy">
+            Gestión de protocolos de seguridad industrial, con experiencia mínima de 3 años y certificaciones SST que aseguren ambientes de trabajo controlados.
+          </p>
+          <button type="button" class="submit-button job-apply-btn" data-job="Supervisor de Seguridad Minera">Postularme a este puesto</button>
+        </article>
+      </div>
+
+      <div class="jobs-application">
+        <p id="selected-job-info" style="color: #35404a; font-weight: 500; margin-bottom: 1rem; display: none;">
+          Estás postulando al cargo: <strong id="selected-job-title"></strong>
+        </p>
+        <h2>Envía tu postulación</h2>
+        <p>
+          Completa el formulario con tus datos y adjunta tu currículum en PDF. Nuestro equipo de reclutamiento revisará tu solicitud y te contactará a la brevedad.
+        </p>
+
+        <form id="application-form" enctype="multipart/form-data">
+          <input type="hidden" id="selected-job-input" name="selectedJob" />
+          <input type="hidden" id="puestoId" name="puestoId" value="1" />
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="name">Nombre completo</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Teléfono de contacto</label>
+              <div class="phone-group">
+                <select id="country-code" name="countryCode">
+                  <option value="+58">+58 (Venezuela)</option>
+                  <option value="+57">+57 (Colombia)</option>
+                </select>
+                <input type="tel" id="phone" name="phone" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="resume">Currículum (PDF)</label>
+              <input type="file" id="resume" name="resume" accept="application/pdf,.pdf" required />
+            </div>
+          </div>
+
+          <button type="submit" class="submit-button">Enviar solicitud</button>
+          <div id="status" class="status"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="js/validation.js"></script>
+</body>
+</html>

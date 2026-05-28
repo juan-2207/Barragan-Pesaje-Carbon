@@ -1,0 +1,159 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String
+  roleId    Int?
+  role      Role?    @relation(fields: [roleId], references: [id])
+  name      String
+  status    String?  @default("active")
+  isActive  Boolean? @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  resetToken String?
+  resetTokenExpiry DateTime?
+  shiftAssignments ShiftAssignment[]
+}
+
+model Area {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Sector {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Fleet {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  vehicles  Vehicle[]
+}
+
+model Vehicle {
+  id        Int      @id @default(autoincrement())
+  name      String
+  fleetId   Int?
+  fleet     Fleet?  @relation(fields: [fleetId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Shift {
+  id        Int      @id @default(autoincrement())
+  name      String
+  startTime DateTime
+  endTime   DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  shiftAssignments ShiftAssignment[]
+}
+
+model ShiftAssignment {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  shiftId   Int
+  shift     Shift    @relation(fields: [shiftId], references: [id])
+  date      DateTime
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  shiftCuts ShiftCut[]
+}
+
+model ShiftCut {
+  id        Int      @id @default(autoincrement())
+  shiftAssignmentId Int
+  shiftAssignment   ShiftAssignment @relation(fields: [shiftAssignmentId], references: [id])
+  cutTime   DateTime
+  reason    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Extraction {
+  id          Int      @id @default(autoincrement())
+  frontName   String
+  date        DateTime
+  tonnage     Float
+  coalType    String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Weighing {
+  id          Int      @id @default(autoincrement())
+  truckId     String
+  gross       Float?
+  net         Float?
+  tare        Float?
+  date        DateTime @default(now())
+  maxCapacity Float
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Patient {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String?  @unique
+  phone     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  consultations Consultation[]
+}
+
+model Consultation {
+  id        Int      @id @default(autoincrement())
+  patientId Int
+  patient   Patient  @relation(fields: [patientId], references: [id])
+  date      DateTime
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Puesto {
+  id            Int           @id @default(autoincrement())
+  titulo        String
+  descripcion   String?
+  postulaciones Postulacion[]
+}
+
+model Postulacion {
+  id        Int      @id @default(autoincrement())
+  puestoId  Int
+  nombre    String
+  telefono  String
+  correo    String
+  pdfUrl    String
+  createdAt DateTime @default(now())
+
+  puesto    Puesto   @relation(fields: [puestoId], references: [id], onDelete: Cascade)
+}
