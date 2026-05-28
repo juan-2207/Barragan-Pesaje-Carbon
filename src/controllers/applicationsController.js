@@ -1,4 +1,4 @@
-import { prisma } from '../config/prismaClient.js';
+import { prisma } from '../config/database.js';
 import upload from '../config/multer.js';
 
 export const createApplication = async (req, res) => {
