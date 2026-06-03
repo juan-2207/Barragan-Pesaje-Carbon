@@ -1,6 +1,8 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
+import { fileURLToPath } from 'node:url'
+import path from 'node:path'
 import authRoutes from './src/routes/authRoutes.js'
 import logisticsRoutes from './src/routes/logisticsRoutes.js'
 import rolesRoutes from './src/routes/roles.js'
@@ -20,9 +22,12 @@ dotenv.config()
 
 const app = express()
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 app.use(cors())
 app.use(express.json())
-
+app.use(express.static(path.join(__dirname, 'src/public')))
 app.use(logger)
 
 // Routes
