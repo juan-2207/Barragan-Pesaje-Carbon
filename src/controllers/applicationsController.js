@@ -1,5 +1,7 @@
 import { prisma } from '../config/database.js';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const createApplication = async (req, res) => {
     try {
@@ -27,26 +29,15 @@ export const createApplication = async (req, res) => {
             }
         });
 
-        // Send email confirmation
+        // Send email confirmation via Resend
         try {
-            const transporter = nodemailer.createTransport({
-                service: 'gmail',
-                auth: {
-                    user: process.env.EMAIL_USER,
-                    pass: process.env.EMAIL_PASS,
-                }
-            });
+            const fromEmail = process.env.RESEND_FROM_EMAIL || process.env.EMAIL_USER;
+            if (!process.env.RESEND_API_KEY || !fromEmail) {
+                throw new Error('Resend API key or sender email is not configured.');
+            }
 
-            const fromAddress = `SENAFIM Reclutamiento <${process.env.EMAIL_USER}>`;
-            const mailOptions = {
-                from: fromAddress,
-                to: email,
-                subject: 'Confirmación de postulación - SENAFIM',
-                text: `Hola ${fullName},\n\nConfirmamos que tu formulario se ha llenado de manera exitosa. Nos pondremos en contacto contigo para coordinar una entrevista de trabajo en caso de ser seleccionado.\n\nProceso en Curso\n\nEste es un correo automático, por favor no respondas a este mensaje.\n`,
-                headers: {
-                    'X-Priority': '3'
-                },
-                html: `
+            const fromAddress = `SENAFIM Reclutamiento <${fromEmail}>`;
+            const htmlContent = `
                     <div style="background:#f8fafc;padding:24px;font-family:Arial,Helvetica,sans-serif;line-height:1.6;color:#1f2937;">
                       <div style="max-width:600px;margin:0 auto;background:#ffffff;border-radius:20px;overflow:hidden;border:1px solid rgba(15,23,42,0.08);box-shadow:0 20px 48px rgba(15,23,42,0.08);">
                         <div style="background:#0b132b;padding:20px 24px;">
@@ -61,14 +52,19 @@ export const createApplication = async (req, res) => {
                         <div style="background:#f1f5f9;padding:18px 24px;font-size:13px;color:#64748b;text-align:center;">Este es un correo automático, por favor no respondas a este mensaje.</div>
                       </div>
                     </div>
-                `,
-            };
+                `;
 
-            await transporter.sendMail(mailOptions);
+            await resend.emails.send({
+                from: fromAddress,
+                to: email,
+                subject: 'Confirmación de postulación - SENAFIM',
+                html: htmlContent,
+                text: `Hola ${fullName},\n\nConfirmamos que tu formulario se ha llenado de manera exitosa. Nos pondremos en contacto contigo para coordinar una entrevista de trabajo en caso de ser seleccionado.\n\nProceso en Curso\n\nEste es un correo automático, por favor no respondas a este mensaje.`
+            });
             console.log('Confirmation email sent to:', email);
         } catch (emailError) {
             console.error('Error sending email:', emailError);
-            // We don't want to fail the application if email fails
+            // No queremos que falle la aplicación si el correo no se envía
         }
 
         return res.status(201).json({ ok: true, message: 'Postulación enviada.', applicationId: postulacion.id });
