@@ -29,7 +29,9 @@ export const createApplication = async (req, res) => {
             }
         });
 
-        // Send email confirmation via Resend
+        // Envío de correo deshabilitado temporalmente para evitar problemas de conexión con SMTP/Render.
+        // El guardado en base de datos y la respuesta 201 siguen funcionando.
+        /*
         try {
             const fromEmail = process.env.RESEND_FROM_EMAIL || process.env.EMAIL_USER;
             if (!process.env.RESEND_API_KEY || !fromEmail) {
@@ -66,6 +68,7 @@ export const createApplication = async (req, res) => {
             console.error('Error sending email:', emailError);
             // No queremos que falle la aplicación si el correo no se envía
         }
+        */
 
         return res.status(201).json({ ok: true, message: 'Postulación enviada.', applicationId: postulacion.id });
 
