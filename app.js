@@ -15,6 +15,8 @@ import shiftsRoutes from './src/routes/shifts.js'
 import shiftAssignmentsRoutes from './src/routes/shiftAssignments.js'
 import weighingsRoutes from './src/routes/weighings.js'
 import shiftCutsRoutes from './src/routes/shiftCuts.js'
+import applicationsRoutes from './src/routes/applications.js'
+import puestosRoutes from './src/routes/puestos.js'
 import errorHandler from './src/middlewares/errorHandler.js'
 import { logger } from './src/middlewares/logger.js'
 
@@ -28,6 +30,7 @@ const __dirname = path.dirname(__filename)
 app.use(cors())
 app.use(express.json())
 app.use(express.static(path.join(__dirname, 'src/public')))
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 app.use(logger)
 
 // Routes
@@ -41,8 +44,10 @@ app.use('/api/sectors', sectorsRoutes)
 app.use('/api/areas', areasRoutes)
 app.use('/api/shifts', shiftsRoutes)
 app.use('/api/shift-assignments', shiftAssignmentsRoutes)
+app.use('/api/applications', applicationsRoutes)
 app.use('/api/weighings', weighingsRoutes)
 app.use('/api/shift-cuts', shiftCutsRoutes)
+app.use('/api/puestos', puestosRoutes)
 
 // Error handling middleware
 app.use(errorHandler)

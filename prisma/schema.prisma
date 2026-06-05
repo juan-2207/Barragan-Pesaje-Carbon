@@ -143,17 +143,26 @@ model Puesto {
   id            Int           @id @default(autoincrement())
   titulo        String
   descripcion   String?
+  requisitos    String?       // Copiado exacto de tu Neon
+  ubicacion     String?       // Copiado exacto de tu Neon
+  activo        Boolean?      @default(true)
+  fechaCreacion DateTime?     @default(now()) @map("fecha_creacion")
   postulaciones Postulacion[]
+
+  @@map("vacantes")         // Mapea el modelo a la tabla 'vacantes'
 }
 
 model Postulacion {
   id        Int      @id @default(autoincrement())
-  puestoId  Int
-  nombre    String
+  puestoId  Int      @map("vacante_id")        // Vincula con vacante_id
+  nombre    String   @map("nombre_completo")   // Vincula con nombre_completo
   telefono  String
   correo    String
-  pdfUrl    String
-  createdAt DateTime @default(now())
+  pdfUrl    String   @map("cv_archivo")        // Vincula con cv_archivo
+  mensaje   String?                            // Agregado por si acaso
+  createdAt DateTime @default(now()) @map("fecha_postulacion") // Vincula con fecha_postulacion
 
   puesto    Puesto   @relation(fields: [puestoId], references: [id], onDelete: Cascade)
+
+  @@map("postulaciones")
 }
