@@ -26,18 +26,18 @@ const __dirname = dirname(__filename);
 
 app.use(express.json());
 
-// 2. Como public y server.js están ambos en 'src', la ruta es directa:
-const publicPath = join(__dirname, 'public');
-
-app.use(express.static(publicPath));
+// 2. Carpeta public deshabilitada (frontend separado)
+// const publicPath = join(__dirname, 'public');
+// app.use(express.static(publicPath));
 
 // Servir archivos subidos (PDFs) estáticamente
 const uploadsPath = join(__dirname, '..', 'uploads');
 app.use('/uploads', express.static(uploadsPath));
 
-app.get('/', (req, res) => {
-    res.sendFile(join(publicPath, 'index.html'));
-});
+// Ruta raíz deshabilitada (frontend y backend independientes)
+// app.get('/', (req, res) => {
+//     res.sendFile(join(publicPath, 'index.html'));
+// });
 
 app.use(logger);
 
