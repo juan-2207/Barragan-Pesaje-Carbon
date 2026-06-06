@@ -1,0 +1,67 @@
+.jobs-page {
+  background: var(--bg-section);
+  border-radius: 1.75rem;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.status-banner {
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.status-banner.success {
+  background: rgba(16, 185, 129, 0.12);
+  color: #065f46;
+}
+
+.status-banner.error {
+  background: rgba(239, 68, 68, 0.14);
+  color: #991b1b;
+}
+
+.jobs-list {
+  display: grid;
+  gap: 1.3rem;
+}
+
+.apply-card {
+  padding: 1.5rem 1.5rem 0;
+}
+
+.apply-card h2 {
+  margin: 0 0 1rem 0;
+}
+
+.apply-card label {
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.1rem;
+  font-weight: 600;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.apply-card input {
+  background: var(--bg-card);
+}
+
+.apply-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}

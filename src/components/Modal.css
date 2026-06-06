@@ -1,0 +1,54 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(11, 19, 43, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  z-index: 1200;
+  padding: 2rem;
+}
+
+.modal-card {
+  width: min(100%, 760px);
+  background: var(--bg-card);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow);
+  padding: 1.75rem;
+  position: relative;
+}
+
+.modal-close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.apply-card label {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-weight: 600;
+}
+
+.apply-card input[type="text"],
+.apply-card input[type="email"],
+.apply-card input[type="tel"],
+.apply-card input[type="file"] {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  margin-top: 0.35rem;
+  background: var(--bg-surface);
+}
+
+.apply-card input[type="file"] {
+  padding: 0.65rem 0.9rem;
+}

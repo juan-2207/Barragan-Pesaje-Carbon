@@ -1,0 +1,44 @@
+.vacancy-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  padding: 1.6rem;
+  background: var(--bg-card);
+  border-radius: 1.5rem;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.vacancy-main h3 {
+  margin: 0 0 0.55rem 0;
+  font-size: 1.15rem;
+}
+
+.vacancy-meta {
+  color: var(--color-accent);
+  font-size: 0.95rem;
+  margin: 0 0 0.75rem 0;
+  font-weight: 700;
+}
+
+.vacancy-desc {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.vacancy-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+@media (max-width: 720px) {
+  .vacancy-card {
+    grid-template-columns: 1fr;
+  }
+
+  .vacancy-actions {
+    justify-content: flex-start;
+  }
+}

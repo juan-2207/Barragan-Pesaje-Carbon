@@ -1,0 +1,55 @@
+.contact-page {
+  display: grid;
+  place-items: center;
+  min-height: calc(100vh - 160px);
+  padding: 2rem 0;
+}
+
+.contact-wrapper {
+  width: min(760px, 100%);
+}
+
+.contact-card {
+  display: grid;
+  gap: 1.5rem;
+  padding: 2rem;
+  background: var(--bg-card);
+  border-radius: 1.5rem;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+
+/* Dark-mode: ensure the contact card uses a premium dark surface that blends with page */
+[data-theme='dark'] .contact-card {
+  background: #1e293b; /* premium dark slate */
+  border: 1px solid rgba(255,255,255,0.04);
+  box-shadow: var(--shadow);
+  color: #e2e8f0;
+}
+
+[data-theme='dark'] .contact-card div {
+  color: #cbd5e1;
+}
+
+.contact-row {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+  align-items: center;
+}
+
+.contact-row svg {
+  width: 2.2rem;
+  height: 2.2rem;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.contact-card strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.contact-card div {
+  color: var(--muted);
+}

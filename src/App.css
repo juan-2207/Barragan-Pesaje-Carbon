@@ -1,0 +1,52 @@
+.app-shell {
+  background: var(--bg-page);
+}
+
+.app-content {
+  padding: 2.5rem 1.75rem 4rem;
+}
+
+section h1 {
+  margin: 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+}
+
+section p {
+  line-height: 1.8;
+  color: var(--muted);
+}
+
+form input,
+form textarea,
+form input[type="file"] {
+  width: 100%;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  margin-top: 0.85rem;
+  background: var(--bg-card);
+  color: inherit;
+}
+
+form label {
+  display: grid;
+  gap: 0.55rem;
+  font-weight: 600;
+}
+
+section {
+  position: relative;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.8rem;
+  color: var(--color-accent);
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  max-width: 680px;
+  color: var(--muted);
+}

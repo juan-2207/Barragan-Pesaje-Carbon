@@ -1,0 +1,154 @@
+:root {
+  --color-primary: #0b3b6f; /* Azul corporativo profundo */
+  --color-secondary: #0f2d59;
+  --color-accent: #ff6b00; /* Naranja vibrante industrial */
+  --bg-page: #f5f6f8; /* Gris muy claro */
+  --bg-section: #eef2f7;
+  --bg-card: #ffffff; /* Blanco puro para tarjetas */
+  --bg-surface: #f8fafc;
+  --text: #0f172a;
+  --muted: #556b7a;
+  --border: #d1d9e6;
+  --shadow: 0 18px 48px rgba(15, 23, 42, 0.08);
+
+  color-scheme: light;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: var(--bg-page);
+  color: var(--text);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg-page);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.app-content {
+  flex: 1;
+  padding: 1.5rem 1.5rem 3rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+section h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 3vw, 3rem);
+}
+
+section p {
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+form input,
+form textarea,
+form input[type="file"] {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.9rem;
+  margin-top: 0.75rem;
+  background: var(--bg-card);
+  color: inherit;
+}
+
+form label {
+  display: grid;
+  gap: 0.5rem;
+  font-weight: 600;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.95rem 1.5rem;
+  border: none;
+  border-radius: 0.85rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+}
+
+.button-primary {
+  background: var(--color-accent);
+  color: #fff;
+  box-shadow: 0 16px 28px rgba(255, 107, 0, 0.24);
+}
+
+.button-secondary {
+  background: #eef2f7;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid rgba(255, 107, 0, 0.35);
+  outline-offset: 2px;
+}
+
+/* Theme: dark */
+[data-theme='dark'] {
+  --color-primary: #0b132b;
+  --color-secondary: #091829;
+  --color-accent: #ff6b00;
+  --bg-page: #0b132b;
+  --bg-section: #111f3d;
+  --bg-card: #0f172a;
+  --bg-surface: #111f31;
+  --text: #eef2ff;
+  --muted: #bbc9e0;
+  --border: #1f3458;
+  --shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+  background: var(--bg-page);
+  color: var(--text);
+}
+
+[data-theme='dark'] body {
+  background: var(--bg-page);
+}
+
+.has-modal-open {
+  overflow: hidden;
+}
+
+/* Utility when modal open */
+.has-modal-open {
+  overflow: hidden;
+}

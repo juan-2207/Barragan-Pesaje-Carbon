@@ -1,0 +1,100 @@
+.hero {
+  min-height: 72vh;
+  display: flex;
+  align-items: center;
+  background-image:
+    linear-gradient(180deg, rgba(11, 19, 43, 0.30) 0%, rgba(11, 19, 43, 0.25) 55%, rgba(11, 19, 43, 0.30) 100%),
+    url('https://source.unsplash.com/1600x900/?coal-mine,excavator,open-pit');
+  background-size: cover;
+  background-position: center center;
+  color: #fff;
+  border-radius: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.hero-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.8rem, 4vw, 4.2rem);
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  max-width: 680px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 2rem;
+}
+
+.hero-cta .button-primary {
+  min-width: 200px;
+}
+
+.container {
+  display: grid;
+  gap: 1.5rem;
+  max-width: 1100px;
+  margin: 2.5rem auto 0;
+}
+
+.who-are-we {
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 2rem;
+}
+
+.who-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+.who-text h2 {
+  margin-top: 0;
+}
+
+.join-family .gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.join-family .gallery-grid img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 0.8rem;
+}
+
+.explore-btn.button-primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+[data-theme='dark'] .who-text,
+[data-theme='dark'] .join-family {
+  color: #eef6ff;
+}
+
+[data-theme='dark'] .explore-btn.button-primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* Specific: Únete a la familia card should use an elegant dark tone in dark mode */
+[data-theme='dark'] .join-family .card {
+  background: #1f2937; /* elegant dark slate */
+  color: #e2e8f0; /* light text for readability */
+  border-color: rgba(255,255,255,0.04);
+}
+
+[data-theme='dark'] .join-family .card p,
+[data-theme='dark'] .join-family .card .gallery-grid img {
+  color: #e2e8f0;
+}
